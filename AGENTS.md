@@ -289,3 +289,20 @@ CI 通过只能说明自动检查通过，不能替代人工语义收敛，也�
 - 自动 tag 默认不触发，只有 commit title 包含 `#patch`、`#minor`、`#major` 才会触发版本号更新。
 - 手动打 tag 必须使用 annotated tag。
 - 用户可见变更优先通过 PR 合入，并补齐 label 与验证说明。
+
+<!-- pensieve:instructions:start -->
+## How To Use Pensieve
+
+Use `.pensieve/` as the first source of architectural intent.
+
+- `maxims/` are active engineering rules.
+- `decisions/` are active project decisions.
+- `knowledge/` explains boundary maps and debugging paths.
+- `pipelines/` gives executable workflows.
+
+Use these project pipelines directly when trigger words match; do not rediscover them through skills first.
+
+- Commit requests (`commit`, `git commit`): use `.pensieve/pipelines/run-when-committing.md`. Check staged diff, decide whether reusable insight should be captured, then make atomic commits.
+- Refactor requests (`refactor`, `large refactor`, `split code`): use `.pensieve/pipelines/run-when-refactoring.md`. Confirm the real problem, fix upstream data authority first, split large work into 2-3 user-visible steps, delete old paths when new paths work, and avoid compatibility/fallback branches.
+- Review requests (`review`, `code review`, `inspect code`): use `.pensieve/pipelines/run-when-reviewing-code.md`. Start from git history and changed hot spots, verify candidate issues, and report only high-signal findings with evidence and file locations.
+<!-- pensieve:instructions:end -->
